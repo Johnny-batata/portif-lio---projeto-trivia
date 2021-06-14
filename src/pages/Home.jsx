@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 // import logo from './trivia.png';
 // import '../';
+
+import FetchApi from '../services/fetchApi';
 
 class Home extends Component {
   constructor(props) {
@@ -10,9 +13,17 @@ class Home extends Component {
       name: '',
       email: '',
       buttonReady: false,
+      isRedirect: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.emailVerify = this.emailVerify.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    // console.log('batata');
+    FetchApi();
+    this.setState({ isRedirect: true });
   }
 
   emailVerify() {
@@ -31,7 +42,7 @@ class Home extends Component {
 
   render() {
     const { handleChange } = this;
-    const { buttonReady } = this.state;
+    const { buttonReady, isRedirect } = this.state;
     return (
       <>
         <p> Bem vindo : página inicial </p>
@@ -60,12 +71,14 @@ class Home extends Component {
           type="button"
           disabled={!buttonReady}
           data-testid="btn-play"
+          onClick={this.onClick}
         >
           {' '}
           Jogar
           {' '}
 
         </button>
+        {isRedirect && <Redirect to="/game" />}
 
       </>
     );
