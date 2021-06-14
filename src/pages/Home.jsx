@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, Link } from 'react-router-dom';
 // import logo from './trivia.png';
 // import '../';
 
@@ -79,6 +79,10 @@ class Home extends Component {
 
         </button>
         {isRedirect && <Redirect to="/game" />}
+
+        <Link to="/settings">
+          <button type="button" data-testid="btn-settings"> Configurações</button>
+        </Link>
 
       </>
     );
