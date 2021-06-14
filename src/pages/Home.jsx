@@ -22,8 +22,18 @@ class Home extends Component {
 
   onClick() {
     // console.log('batata');
+    const { name, email } = this.state;
     FetchApi();
+    const player = {
+      name,
+      assertions: 0,
+      score: 0,
+      gravatarEmail: email,
+    };
+
     this.setState({ isRedirect: true });
+    localStorage.setItem('state', JSON.stringify(player));
+    // localStorage.setItem('email', email);
   }
 
   emailVerify() {
