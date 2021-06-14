@@ -5,7 +5,7 @@ class Settings extends Component {
     return (
 
       <div>
-        <h1 data-testid="settings-title"> Bem vindo as configurações   </h1>
+        <h1 data-testid="settings-title"> Bem vindo as configurações.   </h1>
       </div>
     );
   }
