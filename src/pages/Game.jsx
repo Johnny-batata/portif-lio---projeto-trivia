@@ -31,7 +31,7 @@ export default class Game extends Component {
     return (
       <header>
         <img
-          src={url}
+          src={ url }
           alt="player.jpeg"
           data-testid="header-profile-picture"
         />

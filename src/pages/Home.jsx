@@ -62,7 +62,7 @@ class Home extends Component {
           <input
             id="name"
             name="name"
-            onChange={handleChange}
+            onChange={ handleChange }
             data-testid="input-player-name"
             type="text"
           />
@@ -73,15 +73,15 @@ class Home extends Component {
             id="email"
             name="email"
             data-testid="input-gravatar-email"
-            onChange={handleChange}
+            onChange={ handleChange }
             type="email"
           />
         </label>
         <button
           type="button"
-          disabled={!buttonReady}
+          disabled={ !buttonReady }
           data-testid="btn-play"
-          onClick={this.onClick}
+          onClick={ this.onClick }
         >
           {' '}
           Jogar
