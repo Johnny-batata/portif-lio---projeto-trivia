@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FetchImageGravatar from '../services/fetchImageGravatar';
+import Question from '../components/Questions';
 
 export default class Game extends Component {
   constructor() {
@@ -15,7 +16,7 @@ export default class Game extends Component {
 
   componentDidMount() {
     const name = JSON.parse(localStorage.getItem('state'));
-    console.log(name);
+    // console.log(name);
     this.updateState(name);
   }
 
@@ -56,7 +57,7 @@ export default class Game extends Component {
     return (
       <div>
         {this.header()}
-
+        <Question />
       </div>
     );
   }
