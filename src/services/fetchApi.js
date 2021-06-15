@@ -2,7 +2,7 @@ async function FetchApiResolved(perguntas, token) {
   const response = await fetch(`https://opentdb.com/api.php?amount=${perguntas}&token=${token}`);
   const data = await response.json();
   // console.log(data);
-  localStorage.setItem('questions', JSON.stringify(data));
+  // localStorage.setItem('questions', JSON.stringify(data));
   return data;
 }
 
