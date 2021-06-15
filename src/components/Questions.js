@@ -25,7 +25,7 @@ class Questions extends React.Component {
     this.setState({ perguntas: perguntas.results });
   }
 
-  checkAnswer(event) {
+  checkAnswer() {
     const buttons = document.querySelectorAll('.default');
     this.setState({
       disable: true,
