@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FetchImageGravatar from '../services/fetchImageGravatar';
-import Question from '../components/Questions';
 
 class Feedback extends Component {
   constructor() {
@@ -74,10 +73,14 @@ class Feedback extends Component {
   }
 
   render() {
+    const { assertions, score } = this.state;
     return (
       <div>
         { this.header() }
         { this.scoreFeedback() }
+        <p>Questões corretas:</p>
+        <p data-testid="feedback-total-question">{ assertions }</p>
+        <p data-testid="feedback-total-score">{ score }</p>
       </div>
     );
   }
