@@ -31,8 +31,8 @@ class Questions extends React.Component {
   }
 
   componentDidUpdate() {
-    const { timer, indice } = this.state;
-    const FIVESECONDS = 5000;
+    // const { timer, indice } = this.state;
+    // const FIVESECONDS = 5000;
     // if (indice === 4) this.endGame();
     // if (timer === 0) setTimeout(() => { this.nextQuestion(); }, FIVESECONDS);
     // if (timer === 0) this.freezedByTimer();
@@ -99,7 +99,7 @@ class Questions extends React.Component {
   }
 
   renderNextQuestionButton() {
-    const { perguntas, indice, disable, nextDisable, timer } = this.state;
+    const { nextDisable } = this.state;
     if (nextDisable === false) {
       return (
         <button
@@ -116,7 +116,7 @@ class Questions extends React.Component {
   }
 
   renderQuestions() {
-    const { perguntas, indice, disable, nextDisable, timer } = this.state;
+    const { perguntas, indice, disable, timer } = this.state;
     return (
       <div>
         <p data-testid="question-category">{`Categoria ${perguntas[indice].category}`}</p>
