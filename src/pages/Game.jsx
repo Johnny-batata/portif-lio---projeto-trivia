@@ -21,10 +21,10 @@ export default class Game extends Component {
   }
 
   async updateState(name) {
-    await FetchImageGravatar(name.gravatarEmail)
+    await FetchImageGravatar(name.player.gravatarEmail)
       .then((data) => this.setState({ url: data }));
-    this.setState({ score: name.score });
-    this.setState({ name: name.name });
+    this.setState({ score: name.player.score });
+    this.setState({ name: name.player.name });
   }
 
   header() {

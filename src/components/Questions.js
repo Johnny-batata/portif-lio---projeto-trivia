@@ -67,7 +67,7 @@ class Questions extends React.Component {
 
   updtadeQuestions(perguntas) {
     const dados = JSON.parse(localStorage.getItem('state'));
-    this.setState({ perguntas: perguntas.results, score: dados.score });
+    this.setState({ perguntas: perguntas.results, score: dados.player.score });
   }
 
   calcDificult(dificculty) {
@@ -89,12 +89,12 @@ class Questions extends React.Component {
     const { score, assertions } = this.state;
     const dados = JSON.parse(localStorage.getItem('state'));
 
-    const player = {
-      name: dados.name,
+    const player = { player: {
+      name: dados.player.name,
       assertions,
       score,
-      gravatarEmail: dados.gravatarEmail,
-    };
+      gravatarEmail: dados.player.gravatarEmail,
+    } };
 
     localStorage.setItem('state', JSON.stringify(player));
   }
@@ -111,19 +111,19 @@ class Questions extends React.Component {
       nextDisable: false,
     });
 
-    if (props.target.name === 'correct-answer') {
-      const calculo = MNumber + (timer * dificuldade);
-      this.setState((prev) => ({
-        score: prev.score + calculo,
-        assertions: prev.assertions + 1 }), () => this.updateLocalStorage());
-    }
-
     buttons.forEach((button) => {
       if (button.name === 'correct-answer') {
         return button.classList.add('green-border');
       }
       return button.classList.add('red-border');
     });
+
+    if (props.target.name === 'correct-answer') {
+      const calculo = MNumber + (timer * dificuldade);
+      this.setState((prev) => ({
+        score: prev.score + calculo,
+        assertions: prev.assertions + 1 }), () => this.updateLocalStorage());
+    }
   }
 
   regress() {
