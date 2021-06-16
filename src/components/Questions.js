@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import FetchApi from '../services/fetchApi';
 // import FetchApi from '../services/fetchApi';
 import '../App.css';
@@ -15,6 +16,7 @@ class Questions extends React.Component {
       nextDisable: true,
       timer: 30,
       score: 0,
+      isRedirect: false,
     };
     this.updtadeQuestions = this.updtadeQuestions.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -50,6 +52,9 @@ class Questions extends React.Component {
   }
 
   nextQuestion() {
+    const { indice } = this.state;
+    const FIVE = 5;
+    if (indice + 1 === FIVE) return this.setState({ isRedirect: true });
     this.setState((prev) => ({ indice: prev.indice + 1 }));
     this.setState(() => ({ timer: 30 }));
     this.setState({ disable: false });
@@ -212,10 +217,11 @@ class Questions extends React.Component {
   }
 
   render() {
-    const { perguntas } = this.state;
+    const { perguntas, isRedirect } = this.state;
     if (perguntas.length < 1) return <p>Carregando...</p>;
     return (
       <div>
+        { isRedirect && <Redirect to="/feedback" />}
         { this.renderQuestions() }
         { this.renderNextQuestionButton() }
       </div>
