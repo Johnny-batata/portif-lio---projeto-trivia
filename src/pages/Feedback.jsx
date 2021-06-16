@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import FetchImageGravatar from '../services/fetchImageGravatar';
 
 class Feedback extends Component {
@@ -81,6 +83,9 @@ class Feedback extends Component {
         <p>Questões corretas:</p>
         <p data-testid="feedback-total-question">{ assertions }</p>
         <p data-testid="feedback-total-score">{ score }</p>
+        <Link to="/">
+          <button data-testid="btn-play-again" type="button">Jogar novamente</button>
+        </Link>
       </div>
     );
   }
