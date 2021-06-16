@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import FetchApi from '../services/fetchApi';
-// import FetchApi from '../services/fetchApi';
 import '../App.css';
 
 class Questions extends React.Component {
@@ -24,7 +23,7 @@ class Questions extends React.Component {
     this.timer = this.timer.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.clearStyles = this.clearStyles.bind(this);
-    this.endGame = this.endGame.bind(this);
+    this.identifyQuestionsType = this.identifyQuestionsType.bind(this);
     this.renderNextQuestionButton = this.renderNextQuestionButton.bind(this);
     this.freezedByTimer = this.freezedByTimer.bind(this);
     this.calcDificult = this.calcDificult.bind(this);
@@ -34,21 +33,6 @@ class Questions extends React.Component {
   componentDidMount() {
     FetchApi().then((data) => this.updtadeQuestions(data));
     this.timer();
-  }
-
-  componentDidUpdate() {
-    // const { timer, indice } = this.state;
-    // const FIVESECONDS = 5000;
-    // if (indice === 4) this.endGame();
-    // if (timer === 0) setTimeout(() => { this.nextQuestion(); }, FIVESECONDS);
-    // if (timer === 0) this.freezedByTimer();
-    // if (timer === 0) this.nextQuestion();
-  }
-
-  endGame() {
-    return this.setState({
-      indice: 0,
-    });
   }
 
   nextQuestion() {
@@ -138,31 +122,43 @@ class Questions extends React.Component {
   }
 
   timer() {
-    // const { timer } = this.state;
     const MS = 1000;
     setInterval(() => { this.regress(); }, MS);
-    // if (timer === 0) return clearInterval(intervalo);
   }
 
   freezedByTimer() {
     return this.setState({ disable: true });
   }
 
-  renderNextQuestionButton() {
-    const { nextDisable } = this.state;
-    if (nextDisable === false) {
-      return (
+  identifyQuestionsType() {
+    const { perguntas, indice, disable } = this.state;
+    if (perguntas[indice].type === 'multiple') { return this.renderQuestions(); }
+    return (
+      <div>
+        <p data-testid="question-category">{`Categoria ${perguntas[indice].category}`}</p>
+        <p data-testid="question-text">{`Pergunta: ${perguntas[indice].question}`}</p>
+
         <button
           type="button"
-          disabled={ nextDisable }
-          data-testid="btn-next"
-          onClick={ this.nextQuestion }
+          data-testid="correct-answer"
+          name="correct-answer"
+          disabled={ disable }
+          className="default"
+          onClick={ this.checkAnswer }
         >
-          Próxima pergunta
+          {`Resposta1: ${perguntas[indice].correct_answer}`}
         </button>
-      );
-    }
-    return console.log('Aqui está o return, Sr. Lint!');
+        <button
+          type="button"
+          data-testid="wrong-answer"
+          name="wrong-answer"
+          disabled={ disable }
+          className="default"
+          onClick={ this.checkAnswer }
+        >
+          {`Resposta2: ${perguntas[indice].incorrect_answers[0]}`}
+        </button>
+      </div>);
   }
 
   renderQuestions() {
@@ -216,13 +212,30 @@ class Questions extends React.Component {
     );
   }
 
+  renderNextQuestionButton() {
+    const { nextDisable } = this.state;
+    if (nextDisable === false) {
+      return (
+        <button
+          type="button"
+          disabled={ nextDisable }
+          data-testid="btn-next"
+          onClick={ this.nextQuestion }
+        >
+          Próxima pergunta
+        </button>
+      );
+    }
+    return console.log('Aqui está o return, Sr. Lint!');
+  }
+
   render() {
     const { perguntas, isRedirect } = this.state;
     if (perguntas.length < 1) return <p>Carregando...</p>;
     return (
       <div>
         { isRedirect && <Redirect to="/feedback" />}
-        { this.renderQuestions() }
+        {this.identifyQuestionsType()}
         { this.renderNextQuestionButton() }
       </div>
     );
