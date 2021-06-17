@@ -14,12 +14,28 @@ class Feedback extends Component {
     this.updateState = this.updateState.bind(this);
     this.header = this.header.bind(this);
     this.scoreFeedback = this.scoreFeedback.bind(this);
+    this.createRanking = this.createRanking.bind(this);
   }
 
   componentDidMount() {
     const name = JSON.parse(localStorage.getItem('state'));
     // console.log(name);
     this.updateState(name);
+  }
+
+  createRanking() {
+    const { url, score, name } = this.state;
+    const recovery = JSON.parse(localStorage.getItem('ranking')) || [];
+
+    const ranking = {
+      name,
+      score,
+      picture: url,
+    };
+
+    recovery.push(ranking);
+    recovery.sort((a, b) => b.score - a.score);
+    localStorage.setItem('ranking', JSON.stringify(recovery));
   }
 
   async updateState(name) {
@@ -86,7 +102,14 @@ class Feedback extends Component {
           <button data-testid="btn-play-again" type="button">Jogar novamente</button>
         </Link>
         <Link to="/ranking">
-          <button data-testid="btn-ranking" type="button">Ver Ranking</button>
+          <button
+            data-testid="btn-ranking"
+            onClick={ this.createRanking }
+            type="button"
+          >
+            Ver Ranking
+
+          </button>
         </Link>
       </div>
     );
