@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FetchImageGravatar from '../services/fetchImageGravatar';
-import Question from '../components/Questions';
+import Questions from '../components/Questions';
 
 export default class Game extends Component {
   constructor() {
@@ -57,7 +57,7 @@ export default class Game extends Component {
     return (
       <div>
         {this.header()}
-        <Question />
+        <Questions />
       </div>
     );
   }
