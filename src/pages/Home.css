@@ -1,0 +1,145 @@
+body {
+  background-color: #0652dd;
+}
+
+.main {
+  align-items: center;
+  background-image: url('../images/backgound.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.main span {
+  color: rgba(19, 15, 64, 1);
+}
+
+.main button {
+  align-items: center;
+  background-color: #218c74;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  height: 35px;
+  justify-content: center;
+  margin-top: 10px;
+  opacity: 1;
+  outline: none;
+  padding: 0 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
+  width: 250px;
+}
+
+.settings button {
+  align-items: center;
+  background-color: rgba(235, 77, 75, 1);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  height: 35px;
+  justify-content: center;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 5px;
+  text-align: center;
+  text-decoration: none;
+  width: 250px;
+}
+
+.main button:hover {
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.settings button:hover {
+  background-color: rgba(235, 77, 75, 0.9);
+}
+
+
+.main a {
+  text-decoration: none;
+}
+
+.form-login {
+  align-items: center;
+  background-color: rgba(245, 246, 250, 0.65);
+  border-radius: 20px;
+  box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  justify-content: space-around;
+  padding: 20px;
+  width: 25%;
+}
+
+.form-login span {
+  font-family: 'Staatliches' , cursive;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.labels-input {
+  align-items: center;
+  color: rgba(19, 15, 64, 0.8);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Staatliches' , cursive;
+  font-size: 30px;
+  justify-content: center;
+}
+
+.bem-vindo {
+  align-items: center;
+  color: wheat;
+  display: flex;
+  font-family: 'Staatliches' , cursive;
+  font-size: 35px;
+  justify-content: center;
+}
+
+.bem-vindo2 {
+  align-items: center;
+  color: wheat;
+  display: flex;
+  font-family: 'Pangolin' , cursive;
+  font-size: 55px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.config-input {
+  align-items: center;
+  background-color: #dfe6e9;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  height: 35px;
+  justify-content: center;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 5px;
+  text-align: center;
+  width: 320px;
+}
+
+.config-input:focus {
+  box-shadow: 0 0 0 0;
+  outline: none;
+}
+

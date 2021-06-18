@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FetchImageGravatar from '../services/fetchImageGravatar';
 import Questions from '../components/Questions';
+import './Game.css';
 
 export default class Game extends Component {
   constructor() {
@@ -12,12 +13,18 @@ export default class Game extends Component {
     };
     this.updateState = this.updateState.bind(this);
     this.header = this.header.bind(this);
+    this.updateScore = this.updateScore.bind(this);
   }
 
   componentDidMount() {
     const name = JSON.parse(localStorage.getItem('state'));
-    // console.log(name);
     this.updateState(name);
+  }
+
+  updateScore(props) {
+    this.setState((prev) => ({
+      ...prev, score: props,
+    }));
   }
 
   async updateState(name) {
@@ -31,33 +38,44 @@ export default class Game extends Component {
     const { url, score, name } = this.state;
     return (
       <header>
-        <img
-          src={ url }
-          alt="player.jpeg"
-          data-testid="header-profile-picture"
-        />
-        <p
-          data-testid="header-player-name"
-        >
-          {name}
+        <div className="header-sideA">
+          <img
+            src={ url }
+            alt="player.jpeg"
+            data-testid="header-profile-picture"
+          />
+        </div>
+        <div className="header-sideB">
+          <div className="side-b1">
+            <span
+              data-testid="header-player-name"
+            >
+              {`Usuário: ${name}`}
 
-        </p>
-        <p
-          data-testid="header-score"
+            </span>
+            <span
+              data-testid="header-score"
 
-        >
-          {score}
+            >
+              {`Pontuação: ${score}`}
 
-        </p>
+            </span>
+          </div>
+          <div className="side-b2">
+            <span className="trybeQuiz">
+              Trybe Quiz
+            </span>
+          </div>
+        </div>
       </header>
     );
   }
 
   render() {
     return (
-      <div>
+      <div className="content">
         {this.header()}
-        <Questions />
+        <Questions updateScore={ this.updateScore } />
       </div>
     );
   }

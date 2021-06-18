@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FetchImageGravatar from '../services/fetchImageGravatar';
+import './Feedback.css';
 
 class Feedback extends Component {
   constructor() {
@@ -67,24 +68,35 @@ class Feedback extends Component {
     const { url, score, name } = this.state;
     return (
       <header>
-        <img
-          src={ url }
-          alt="player.jpeg"
-          data-testid="header-profile-picture"
-        />
-        <p
-          data-testid="header-player-name"
-        >
-          {name}
+        <div className="header-sideA">
+          <img
+            src={ url }
+            alt="player.jpeg"
+            data-testid="header-profile-picture"
+          />
+        </div>
+        <div className="header-sideB">
+          <div className="side-b1">
+            <span
+              data-testid="header-player-name"
+            >
+              {`Usuário: ${name}`}
 
-        </p>
-        <p
-          data-testid="header-score"
+            </span>
+            <span
+              data-testid="header-score"
 
-        >
-          {score}
+            >
+              {`Pontuação: ${score}`}
 
-        </p>
+            </span>
+          </div>
+          <div className="side-b2">
+            <span className="trybeQuiz">
+              Trybe Quiz
+            </span>
+          </div>
+        </div>
       </header>
     );
   }
@@ -92,12 +104,11 @@ class Feedback extends Component {
   render() {
     const { assertions, score } = this.state;
     return (
-      <div>
+      <div className="main-feedback">
         { this.header() }
         { this.scoreFeedback() }
-        <p>Questões corretas:</p>
-        <p data-testid="feedback-total-question">{ assertions }</p>
-        <p data-testid="feedback-total-score">{ score }</p>
+        <p>{`Questões corretas: ${assertions}`}</p>
+        <p data-testid="feedback-total-score">{ `Pontuação: ${score}` }</p>
         <Link to="/">
           <button data-testid="btn-play-again" type="button">Jogar novamente</button>
         </Link>

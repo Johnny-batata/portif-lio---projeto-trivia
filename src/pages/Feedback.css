@@ -1,0 +1,43 @@
+.main-feedback {
+  align-items: center;
+  background-image: url('../images/backgound.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.main-feedback button {
+  align-items: center;
+  background-color: #218c74;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: center;
+  margin-top: 10px;
+  min-height: 35px;
+  opacity: 1;
+  padding: 2px 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
+  width: 25vw;
+}
+
+.main-feedback a {
+  text-decoration: none;
+}
+
+p {
+  color: rgba(19, 15, 64, 0.8);
+  display: flex;
+  font-family: 'Pangolin' , cursive;
+  font-size: 30px;
+}

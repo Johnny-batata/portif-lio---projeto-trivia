@@ -1,0 +1,121 @@
+.form-questions {
+  align-items: center;
+  background-color: rgba(245, 246, 250, 0.65);
+  border-radius: 20px;
+  box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  justify-content: space-around;
+  padding: 20px;
+  width: 60%;
+}
+
+.conteudo {
+  display: flex;
+  width: 100%;
+}
+
+.sideA {
+  background-color: rgba(245, 246, 250, 0.65);
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px rgba(50, 50, 50, 0.77);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 15px;
+  width: 50%;
+}
+
+.sideB {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.answers {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.timmer {
+  align-items: center;
+  display: flex;
+  font-family: 'Pangolin' , cursive;
+  font-size: 30px;
+  font-weight: 600;
+  padding: 20px;
+  width: 70%;
+}
+
+.btn-answer {
+  align-items: center;
+  background-color: #218c74;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: center;
+  margin-top: 10px;
+  min-height: 30px;
+  opacity: 1;
+  padding: 2px 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.5s;
+  width: 25vw;
+}
+
+.btn-next {
+  align-items: center;
+  background-color: rgba(19, 15, 64, 1);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  height: 35px;
+  justify-content: center;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 5px;
+  text-align: center;
+  text-decoration: none;
+  width: 250px;
+}
+
+.question-now {
+  color: rgba(19, 15, 64, 1);
+  font-size: 22px;
+  font-weight: 600;
+  text-align: justify;
+}
+
+.question-category-now {
+  color: rgba(19, 15, 64, 1);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: justify;
+}
+
+.imagem {
+  padding-left: 40px;
+  width: 50px;
+}
+
+.red-border {
+  background-color: rgba(235, 77, 75, 1);
+  border: none;
+}
+
+.green-border {
+  border: none;
+}

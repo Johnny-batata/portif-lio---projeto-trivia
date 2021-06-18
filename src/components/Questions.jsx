@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 import FetchApi from '../services/fetchApi';
 import '../App.css';
 import { enableDisable } from '../actions';
-// import Timer from './Timer';
+import Imagem from '../images/ampulheta.gif';
+import './Question.css';
 
 const LEVEL = 2;
 const RAMDOM = 0.5;
 const MIN_SCORE = 10;
 const ONE_SECOND = 1000;
-const TIME_TO_ANSWER = 5;
+const TIME_TO_ANSWER = 30;
 const NUMBER_OF_QUESTIONS = 5;
 const CORRECT_ANSWER = 'correct-answer';
 
@@ -25,7 +26,7 @@ class Questions extends React.Component {
       assertions: 0,
       indice: 0,
       disable: props.disable,
-      timer: 15,
+      timer: TIME_TO_ANSWER,
       score: 0,
       isRedirect: false,
     };
@@ -58,7 +59,7 @@ class Questions extends React.Component {
     const answers = (
       [
         {
-          answer: `${perguntas[indice].correct_answer} ## CORRETA ##`,
+          answer: `${perguntas[indice].correct_answer}`,
           name: CORRECT_ANSWER,
           testid: CORRECT_ANSWER,
         },
@@ -115,6 +116,7 @@ class Questions extends React.Component {
 
   updateLocalStorage() {
     const { score, assertions } = this.state;
+    const { updateScore } = this.props;
     const dados = JSON.parse(localStorage.getItem('state'));
 
     const player = { player: {
@@ -123,6 +125,7 @@ class Questions extends React.Component {
       score,
       gravatarEmail: dados.player.gravatarEmail,
     } };
+    updateScore(score);
 
     localStorage.setItem('state', JSON.stringify(player));
   }
@@ -168,22 +171,38 @@ class Questions extends React.Component {
         data-testid={ testid }
         name={ name }
         disabled={ disable }
-        className="default"
+        className="default btn-answer"
         onClick={ this.checkAnswer }
       >
-        { answer }
+        { answer.replace(/&quot;/g, '"').replace(/&#039;/g, '\'') }
       </button>
     ));
   }
 
   renderQuestion() {
-    const { perguntas, indice } = this.state;
+    const { perguntas, indice, timer } = this.state;
     const { category, question } = perguntas[indice];
     return (
-      <div>
-        <p data-testid="question-category">{`Categoria ${category}`}</p>
-        <p data-testid="question-text">{`Pergunta: ${question}`}</p>
-        {this.renderAnswers()}
+      <div className="conteudo">
+        <div className="sideA">
+          <p className="question-now" data-testid="question-text">
+            {`Pergunta: ${question
+              .replace(/&quot;/g, '"')
+              .replace(/&#039;/g, '\'')}`}
+
+          </p>
+          <p className="question-category-now" data-testid="question-category">{`Categoria ${category}`}</p>
+        </div>
+        <div className="sideB">
+          <div className="timmer">
+            { `00:${timer >= MIN_SCORE ? timer : `0${timer}`}` }
+            {timer > 0
+              && <img className="imagem" src={ Imagem } alt="img" />}
+          </div>
+          <div className="answers">
+            {this.renderAnswers()}
+          </div>
+        </div>
       </div>
     );
   }
@@ -193,6 +212,7 @@ class Questions extends React.Component {
     if (disable || !timer) {
       return (
         <button
+          className="btn-next"
           type="button"
           disabled={ !disable }
           data-testid="btn-next"
@@ -205,15 +225,13 @@ class Questions extends React.Component {
   }
 
   render() {
-    const { perguntas, isRedirect, timer } = this.state;
+    const { perguntas, isRedirect } = this.state;
     if (perguntas.length < 1) return <p>Carregando...</p>;
     return (
-      <div>
+      <div className="form-questions">
         { isRedirect && <Redirect to="/feedback" />}
         { this.renderQuestion() }
         { this.renderNextQuestionButton() }
-        <p>{ timer }</p>
-        {/* <Timer /> */}
       </div>
     );
   }
@@ -222,7 +240,7 @@ class Questions extends React.Component {
 Questions.propTypes = {
   disable: PropTypes.bool.isRequired,
   timer: PropTypes.number.isRequired,
-  // toggleEnable: PropTypes.func.isRequired,
+  updateScore: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

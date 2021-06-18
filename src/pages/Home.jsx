@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 // import logo from './trivia.png';
-// import '../';
+import './Home.css';
 
 import FetchApi from '../services/fetchApi';
 
@@ -18,6 +18,7 @@ class Home extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.emailVerify = this.emailVerify.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.handleFormLabel = this.handleFormLabel.bind(this);
   }
 
   onClick() {
@@ -50,51 +51,78 @@ class Home extends Component {
     this.setState({ [name]: value });
   }
 
-  render() {
-    const { handleChange } = this;
-    const { buttonReady, isRedirect } = this.state;
+  handleFormLabel() {
     return (
       <>
-        <p> Bem vindo : página inicial </p>
-
-        <label htmlFor="name">
+        <label className="labels-input" htmlFor="name">
           Nome
           <input
+            className="config-input"
             id="name"
             name="name"
-            onChange={ handleChange }
+            onChange={ this.handleChange }
             data-testid="input-player-name"
             type="text"
+            placeholder="Digite seu nome"
           />
         </label>
-        <label htmlFor="email">
+        <label className="labels-input" htmlFor="email">
           Email
           <input
+            className="config-input"
             id="email"
             name="email"
             data-testid="input-gravatar-email"
-            onChange={ handleChange }
+            onChange={ this.handleChange }
             type="email"
+            placeholder="Digite seu email"
           />
         </label>
-        <button
-          type="button"
-          disabled={ !buttonReady }
-          data-testid="btn-play"
-          onClick={ this.onClick }
-        >
-          {' '}
-          Jogar
-          {' '}
+      </>);
+  }
 
-        </button>
-        {isRedirect && <Redirect to="/game" />}
+  render() {
+    const { handleFormLabel } = this;
+    const { buttonReady, isRedirect } = this.state;
+    return (
+      <div className="main">
 
-        <Link to="/settings">
-          <button type="button" data-testid="btn-settings"> Configurações</button>
-        </Link>
+        <span className="bem-vindo"> Bem vindo </span>
+        <span className="bem-vindo2">Trybe Quiz </span>
 
-      </>
+        <section className="form-login">
+
+          {handleFormLabel()}
+
+          <button
+            type="button"
+            disabled={ !buttonReady }
+            data-testid="btn-play"
+            onClick={ this.onClick }
+          >
+            {' '}
+            JOGAR
+            {' '}
+
+          </button>
+          {isRedirect && <Redirect to="/game" />}
+
+          <div className="settings">
+            <Link to="/settings">
+              <button
+                className="btn-settings"
+                type="button"
+                data-testid="btn-settings"
+              >
+                {' '}
+                CONFIGURAÇÕES
+
+              </button>
+            </Link>
+          </div>
+        </section>
+
+      </div>
     );
   }
 }
