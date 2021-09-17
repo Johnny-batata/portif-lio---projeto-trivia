@@ -55,7 +55,6 @@ export default class Game extends Component {
             </span>
             <span
               data-testid="header-score"
-
             >
               {`Pontuação: ${score}`}
 
